@@ -24,7 +24,7 @@ module Configurator
 
     def get(name)
       name = name.to_sym
-      value = self[name] || defaults[name]
+      value = self.key?(name) ? self[name] : defaults[name]
       if value.respond_to? :call
         value = value.call
       end
@@ -41,14 +41,14 @@ module Configurator
           self[name].send("#{key}=", value_two)
         end
       else
-        self[name] = value.freeze
+        self[name] = value
       end
     end
 
     private
     def method_missing(method, *args, &block)
       method_name = method.to_s
-      setter = method_name.chomp!('=') || args.any? || block_given?
+      setter = method_name.chomp!('=') || !args.empty? || block_given?
       if setter
         set(method_name, args.first, &block)
       else

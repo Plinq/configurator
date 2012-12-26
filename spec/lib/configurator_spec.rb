@@ -75,6 +75,15 @@ describe Configurator do
           TestClass.config.payment_method.should == :plinq
         end
 
+        it "returns nil when a value is explicitly nil" do
+          TestClass.send(:option, :current_user_method, :current_user)
+          TestClass.config.current_user_method.should == :current_user
+          #TestClass.config.current_user_method = nil
+          TestClass.config do
+            current_user_method nil
+          end
+          TestClass.config.current_user_method.should be_nil
+        end
         it "accepts a setter format" do
           TestClass.send(:option, :do_something, "now!")
           TestClass.config.do_something = "later..."

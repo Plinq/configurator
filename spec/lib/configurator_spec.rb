@@ -67,6 +67,12 @@ describe Configurator do
           end
           TestClass.config.do_something.should == "later..."
         end
+
+        it "accepts a setter format" do
+          TestClass.send(:option, :do_something, "now!")
+          TestClass.config.do_something = "later..."
+          TestClass.config.do_something.should == "later..."
+        end
       end
     end
 

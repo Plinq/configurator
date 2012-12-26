@@ -7,5 +7,10 @@ module Configurator
       end
     end
     private :option
+
+    def options(*names)
+      names.each {|name| option(name) }
+    end
+    private :options
   end
 end

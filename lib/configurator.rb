@@ -15,9 +15,4 @@ module Configurator
     end
     @configuration
   end
-
-  private
-  def options(*names)
-    names.each {|name| option(name) }
-  end
 end

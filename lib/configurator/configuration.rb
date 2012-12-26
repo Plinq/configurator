@@ -26,7 +26,7 @@ module Configurator
       name = name.to_sym
       value = self[name] || defaults[name]
       if value.respond_to? :call
-        value = self.instance_exec(self, &value)
+        value = value.call
       end
       value
     end

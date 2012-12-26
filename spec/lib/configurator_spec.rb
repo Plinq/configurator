@@ -68,6 +68,13 @@ describe Configurator do
           TestClass.config.do_something.should == "later..."
         end
 
+        it "uses a lambda to defer processing until it's called" do
+          TestClass.send(:option, :payment_method, lambda {
+            defined?(Paypal) ? :paypal : :plinq
+          })
+          TestClass.config.payment_method.should == :plinq
+        end
+
         it "accepts a setter format" do
           TestClass.send(:option, :do_something, "now!")
           TestClass.config.do_something = "later..."

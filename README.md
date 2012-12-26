@@ -63,7 +63,8 @@ Adding a sub-configuration is simple, too, like so:
 class Application
   extend Configurator
   option :smtp_server do
-  options :host, :port, :password, :username
+    options :host, :port, :password, :username
+  end
 end
 ```
 

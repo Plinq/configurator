@@ -2,17 +2,18 @@
 ## Add simple configuration to any Ruby class
 
 ### Installation
-Add `gem 'configurator'` to your Gemfile
-Run `bundle`
+1. Add `gem 'configurator'` to your Gemfile
+2. Run `bundle`
+3. Profit
 
 ### Usage
 
 #### Mix into any Ruby class and add options
 ```ruby
 class Application
-	extend Configurator
-	option :api_url, "https://www.myapp.com/api/v1"
-	options :format, :mode, :whatevs
+  extend Configurator
+  option :api_url, "https://www.myapp.com/api/v1"
+  options :format, :mode, :whatevs
 end
 ```
 
@@ -30,19 +31,18 @@ Configurator supports three different interfaces and two setter methods:
 ##### Block configuration with implicit configuration object
 ```ruby
 Application.config do
-	api_url "https://www.some.other.app/api/v2"
-	format :json
+  api_url "https://www.some.other.app/api/v2"
+  format :json
 end
 ```
 
 ##### Block configuration with passed configuration object
 ```ruby
 Application.config do |config|
-	config.api_url = "https://www.some.other.app/api/v2"
-	config.format = :json
+  config.api_url = "https://www.some.other.app/api/v2"
+  config.format = :json
 end
 ```
-
 
 ##### Direct configuration
 ```ruby
@@ -61,10 +61,10 @@ Adding a sub-configuration is simple, too, like so:
 
 ```ruby
 class Application
-	extend Configurator
-	option :smtp_server do
-		options :host, :port, :password, :username
-	end
+  extend Configurator
+  option :smtp_server do
+  options :host, :port, :password, :username
+end
 ```
 
 Now, you can refer to an Application's smtp_server configuration like so:
@@ -79,10 +79,10 @@ You can also configure a group of configuration options as a hash:
 
 ```ruby
 Application.config.smtp_server = {
-	host: "smtp.host.com",
-	port: "3306",
-	username: "user",
-	password: "pass"
+  host: "smtp.host.com",
+  port: "3306",
+  username: "user",
+  password: "pass"
 }
 ```
 
@@ -92,7 +92,7 @@ Just refer to a class or module's configuration setting later, pretty simply:
 
 ```ruby
 if Application.config.smtp_server.host
-	Mailer.send_email_with_options(Application.config.smtp_server)
+  Mailer.send_email_with_options(Application.config.smtp_server)
 end
 ```
 

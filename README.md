@@ -8,7 +8,7 @@ Run `bundle`
 ### Usage
 
 #### Mix into any Ruby class and add options
-```
+```ruby
 class Application
 	extend Configurator
 	option :api_url, "https://www.myapp.com/api/v1"
@@ -28,7 +28,7 @@ an option.
 Configurator supports three different interfaces and two setter methods:
 
 ##### Block configuration with implicit configuration object
-```
+```ruby
 Application.config do
 	api_url "https://www.some.other.app/api/v2"
 	format :json
@@ -36,7 +36,7 @@ end
 ```
 
 ##### Block configuration with passed configuration object
-```
+```ruby
 Application.config do |config|
 	config.api_url = "https://www.some.other.app/api/v2"
 	config.format = :json
@@ -45,21 +45,21 @@ end
 
 
 ##### Direct configuration
-```
+```ruby
 Application.config.api_url = "https://www.some.other.app/api/v2"
 Application.config.format = :json
 ```
 
 OR omit the equals operators:
 
-```
+```ruby
 Application.config.mode :production
 ```
 
 #### Sub-configurations
 Adding a sub-configuration is simple, too, like so:
 
-```
+```ruby
 class Application
 	extend Configurator
 	option :smtp_server do
@@ -69,7 +69,7 @@ class Application
 
 Now, you can refer to an Application's smtp_server configuration like so:
 
-```
+```ruby
 Application.config.smtp_server.host
 Application.config.smtp_server.port
 # etc
@@ -77,7 +77,7 @@ Application.config.smtp_server.port
 
 You can also configure a group of configuration options as a hash:
 
-```
+```ruby
 Application.config.smtp_server = {
 	host: "smtp.host.com",
 	port: "3306",
@@ -90,7 +90,7 @@ Application.config.smtp_server = {
 
 Just refer to a class or module's configuration setting later, pretty simply:
 
-```
+```ruby
 if Application.config.smtp_server.host
 	Mailer.send_email_with_options(Application.config.smtp_server)
 end

@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "configurator2"
-  s.version = "0.0.2"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Flip Sasser"]
-  s.date = "2012-12-26"
+  s.date = "2013-01-02"
   s.description = ""
   s.email = "flip@getplinq.com"
   s.extra_rdoc_files = [
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
-    "configurator.gemspec",
+    "configurator2.gemspec",
     "lib/configurator.rb",
     "lib/configurator/configuration.rb",
     "lib/configurator/option.rb",

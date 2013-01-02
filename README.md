@@ -2,7 +2,7 @@
 ## Add simple configuration to any Ruby class
 
 ### Installation
-1. Add `gem 'configurator'` to your Gemfile
+1. Add `gem 'configurator2'` to your Gemfile
 2. Run `bundle`
 3. Profit
 

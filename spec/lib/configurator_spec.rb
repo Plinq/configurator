@@ -78,12 +78,12 @@ describe Configurator do
         it "returns nil when a value is explicitly nil" do
           TestClass.send(:option, :current_user_method, :current_user)
           TestClass.config.current_user_method.should == :current_user
-          #TestClass.config.current_user_method = nil
           TestClass.config do
             current_user_method nil
           end
           TestClass.config.current_user_method.should be_nil
         end
+
         it "accepts a setter format" do
           TestClass.send(:option, :do_something, "now!")
           TestClass.config.do_something = "later..."
@@ -129,6 +129,17 @@ describe Configurator do
         end
         TestClass.config.sub.name.should == :face
         TestClass.config.sub.sub.name.should == :fiz
+      end
+
+      it "allows block format for writing options" do
+        TestClass.config do
+          advanced_options do
+            bitrate 2048
+            fps 60
+          end
+        end
+        TestClass.config.advanced_options.bitrate.should == 2048
+        TestClass.config.advanced_options.fps.should == 60
       end
     end
 

@@ -34,7 +34,8 @@ module Configurator
     def set(name, value, &block)
       name = name.to_sym
       if block_given?
-        self[name] = block
+        self[name] ||= defaults[name] || self.class.new
+        self[name].instance_eval(&block)
       elsif value.is_a?(Hash)
         self[name] = defaults[name] || self.class.new
         value.each do |key, value_two|
